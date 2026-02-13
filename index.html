@@ -1,0 +1,54 @@
+<div class="wrap">
+  <header class="card">
+    <div class="badge">💘 For <span id="name">My Favorite Person</span></div>
+    <h1>Happy Valentine’s Day</h1>
+    <p class="sub">I coded this just for you. Tap the buttons. ❤️</p>
+
+    <div class="row">
+      <button class="btn" id="revealBtn">Open my message</button>
+      <button class="btn ghost" id="reasonsBtn">Show 10 reasons</button>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card" id="messageCard" hidden>
+      <h2>My message</h2>
+      <p id="messageText"></p>
+      <div class="row">
+        <button class="btn tiny" id="typeBtn">Replay typing</button>
+        <button class="btn tiny ghost" id="confettiBtn">More hearts</button>
+      </div>
+    </section>
+
+    <section class="card" id="reasonsCard" hidden>
+      <h2>10 reasons I love you</h2>
+      <ol id="reasonsList"></ol>
+      <p class="tinyNote">P.S. I can add 100 more 😌</p>
+    </section>
+
+    <section class="card">
+      <h2>Pick our vibe</h2>
+      <div class="row">
+        <button class="chip" data-theme="pink">🌸 Soft Pink</button>
+        <button class="chip" data-theme="night">🌙 Night</button>
+        <button class="chip" data-theme="sunset">🌅 Sunset</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>Mini “Yes/No” game</h3>
+      <p class="sub">Will you be my Valentine?</p>
+      <div class="row">
+        <button class="btn" id="yesBtn">Yes 💞</button>
+        <button class="btn ghost" id="noBtn">No 🙃</button>
+      </div>
+      <p id="gameText" class="gameText"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Made with ❤️ + a little bit of JavaScript</span>
+  </footer>
+</div>
+
+<canvas id="hearts"></canvas>
