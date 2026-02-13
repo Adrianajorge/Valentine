@@ -1,3 +1,4 @@
+/* style.css */
 :root{
   --bg0:#06050a;
   --bg1:#0e0b18;
@@ -11,9 +12,6 @@
 
   --accent:#ff3b8d;
   --accent2:#a855ff;
-
-  --env:#2b2738;
-  --envShadow: 0 18px 44px rgba(0,0,0,.55);
 }
 
 *{ box-sizing:border-box; }
@@ -128,7 +126,7 @@ h1{
 }
 .chip:hover{ background: rgba(255,255,255,.06); }
 
-/* ===== Envelope (TikTok style) ===== */
+/* ===== TikTok-style Envelope ===== */
 .envelope{
   position: relative;
   width: 320px;
@@ -137,55 +135,30 @@ h1{
   cursor: pointer;
   user-select:none;
   -webkit-tap-highlight-color: transparent;
+  perspective: 900px;
 }
 
-.back{
+.env-base{
   position:absolute;
   inset:0;
+  border-radius: 14px;
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.14);
-  border-radius: 14px;
-  box-shadow: var(--envShadow);
+  box-shadow: 0 18px 44px rgba(0,0,0,.55);
 }
 
-/* flap triangle */
-.flap{
-  position:absolute;
-  left:0; right:0;
-  top: 0;
-  margin:auto;
-  width:0; height:0;
-  border-left: 160px solid transparent;
-  border-right:160px solid transparent;
-  border-top: 115px solid rgba(168,85,255,.78);
-  transform-origin: top;
-  transform: rotateX(0deg);
-  transition: transform .55s ease;
-  z-index: 4;
-}
-
-/* front triangle */
-.front{
-  position:absolute;
-  left:0; right:0;
-  bottom: 0;
-  margin:auto;
-  width:0; height:0;
-  border-left: 160px solid transparent;
-  border-right:160px solid transparent;
-  border-bottom: 120px solid rgba(255,59,141,.35);
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
-  z-index: 3;
-}
-
-/* letter hidden until open */
+/* Letter (hidden until open) */
 .letter{
   position:absolute;
   left:50%;
   top: 12px;
-  transform: translateX(-50%) translateY(145px);
   width: 88%;
   height: 84%;
+  transform: translateX(-50%) translateY(150px);
+  opacity: 0;
+  transition: transform .65s ease, opacity .35s ease;
+  z-index: 2;
+
   border-radius: 14px;
   background: rgba(10, 8, 16, .94);
   border: 1px solid rgba(255,255,255,.12);
@@ -193,9 +166,6 @@ h1{
   padding: 14px;
   text-align:left;
   overflow:hidden;
-  opacity: 0;
-  transition: transform .65s ease, opacity .35s ease;
-  z-index: 2;
 }
 
 .letter p{
@@ -206,6 +176,34 @@ h1{
   font-size: 15px;
 }
 
+.letter-head{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  margin-bottom: 10px;
+}
+
+.seal{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display:grid;
+  place-items:center;
+  background: linear-gradient(135deg, rgba(255,59,141,.9), rgba(168,85,255,.9));
+  box-shadow: 0 10px 18px rgba(255,59,141,.18);
+  font-weight: 900;
+}
+
+.scribbles{ flex:1; }
+.scribbles span{
+  display:block;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(246,241,255,.10);
+  margin: 6px 0;
+}
+.scribbles span:nth-child(2){ width: 70%; }
+
 .sig{
   display:block;
   margin-top: 14px;
@@ -214,13 +212,69 @@ h1{
   font-weight: 700;
 }
 
+/* FOLDS (the “X” look) */
+.fold{
+  position:absolute;
+  width:0; height:0;
+  z-index: 3;
+}
+
+/* left fold */
+.fold.left{
+  top:0;
+  left:0;
+  border-top: 105px solid transparent;
+  border-bottom: 105px solid transparent;
+  border-right: 160px solid rgba(255,255,255,.06);
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.18));
+}
+
+/* right fold */
+.fold.right{
+  top:0;
+  right:0;
+  border-top: 105px solid transparent;
+  border-bottom: 105px solid transparent;
+  border-left: 160px solid rgba(255,255,255,.04);
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.18));
+}
+
+/* bottom fold (pink-ish) */
+.fold.bottom{
+  left:0; right:0;
+  bottom:0;
+  margin:auto;
+  border-left: 160px solid transparent;
+  border-right:160px solid transparent;
+  border-top: 120px solid rgba(255,59,141,.35);
+  z-index: 4;
+}
+
+/* top flap (purple) */
+.fold.top{
+  left:0; right:0;
+  top:0;
+  margin:auto;
+  border-left: 160px solid transparent;
+  border-right:160px solid transparent;
+  border-bottom: 115px solid rgba(168,85,255,.78);
+  transform-origin: top;
+  transform: rotateX(0deg);
+  transition: transform .55s ease;
+  z-index: 5;
+}
+
 /* OPEN STATE */
-.envelope.open .flap{ transform: rotateX(180deg); }
+.envelope.open .fold.top{
+  transform: rotateX(180deg);
+}
+
 .envelope.open .letter{
   transform: translateX(-50%) translateY(10px);
   opacity: 1;
 }
 
+/* Reasons */
 .reasons{
   max-width: 720px;
   margin: 16px auto 0;
