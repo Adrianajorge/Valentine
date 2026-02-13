@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,19 +19,28 @@
     </header>
 
     <main class="stage">
+      <!-- TikTok-style envelope -->
       <div id="envelope" class="envelope" aria-label="Envelope">
-        <div class="back"></div>
+        <div class="env-base"></div>
 
         <div class="letter">
+          <div class="letter-head">
+            <span class="seal">❤</span>
+            <div class="scribbles">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
           <p id="letterText"></p>
           <span class="sig" id="sig">— Adriana 🖤</span>
         </div>
 
-        <div class="front"></div>
-        <div class="flap"></div>
+        <div class="fold left"></div>
+        <div class="fold right"></div>
+        <div class="fold bottom"></div>
+        <div class="fold top"></div>
       </div>
 
-      <!-- ONLY ONE set of buttons -->
       <div class="controls">
         <button class="btn" id="openBtn" type="button">Open</button>
         <button class="btn ghost" id="resetBtn" type="button">Reset</button>
